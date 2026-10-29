@@ -1,0 +1,18 @@
+{
+    "admin": {
+        "password": "1234",
+        "nombre": "Brian Cona (Admin)",
+        "rol": "ADMIN"
+    },
+    "cliente": {
+        "password": "1234",
+        "nombre": "Cliente Demo",
+        "rol": "CLIENTE"
+    },
+    "tester01": {
+        "password": "test2026",
+        "nombre": "cliente test",
+        "rol": "CLIENTE",
+        "fechaRegistro": "2026-10-23 22:25:04"
+    }
+}

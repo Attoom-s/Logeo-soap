@@ -1,0 +1,8 @@
+[
+  {"id":1,"titulo":"Introducción a SoapUI","descripcion":"Creación de proyectos y peticiones SOAP.","categoria":"Web Services","fechaPublicacion":"2026-01-15"},
+  {"id":2,"titulo":"Servicios SOAP","descripcion":"Comunicación mediante contratos WSDL y mensajes XML.","categoria":"Web Services","fechaPublicacion":"2026-02-10"},
+  {"id":3,"titulo":"Calidad de software","descripcion":"Verificación y validación durante el desarrollo.","categoria":"Ingeniería","fechaPublicacion":"2026-03-05"},
+  {"id":4,"titulo":"Modelo V","descripcion":"Relación entre las fases de desarrollo y las pruebas.","categoria":"Ingeniería","fechaPublicacion":"2026-03-20"},
+  {"id":5,"titulo":"Consultas dinámicas","descripcion":"Filtros opcionales construidos según la solicitud.","categoria":"Programación","fechaPublicacion":"2026-04-02"},
+  {"id":6,"titulo":"Scripts Groovy","descripcion":"Automatización de respuestas dinámicas en SoapUI.","categoria":"Programación","fechaPublicacion":"2026-04-18"}
+]

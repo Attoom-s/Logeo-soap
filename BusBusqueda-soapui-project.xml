@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="bus-busqueda-academico" activeEnvironment="Default" name="BusBusqueda" soapui-version="5.10.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <con:settings/>
+  
+  <con:interface xsi:type="con:WsdlInterface" id="2202c636-1e82-4ec0-8c3d-482c604bbe8e" wsaVersion="NONE" name="BusBusquedaBinding" type="wsdl" bindingName="{http://motorbusqueda/}BusBusquedaBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/xampp/htdocs/Logeo-soap/bus-busqueda.wsdl"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/xampp/htdocs/Logeo-soap/bus-busqueda.wsdl"><con:part><con:url>file:/C:/xampp/htdocs/Logeo-soap/bus-busqueda.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="BusquedaService" targetNamespace="http://motorbusqueda/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://motorbusqueda/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://motorbusqueda/">
+      <xsd:element name="buscar">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="texto" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="categoria" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="fechaDesde" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="usuario" type="xsd:string" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="buscarResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="consultaId" type="xsd:string"/>
+            <xsd:element name="cantidad" type="xsd:int"/>
+            <xsd:element name="resultados">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="resultado" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element name="titulo" type="xsd:string"/>
+                        <xsd:element name="descripcion" type="xsd:string"/>
+                        <xsd:element name="categoria" type="xsd:string"/>
+                        <xsd:element name="fechaPublicacion" type="xsd:string"/>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="obtenerDashboard">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="rol" type="xsd:string" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="obtenerDashboardResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="totalConsultasActivas" type="xsd:int"/>
+            <xsd:element name="terminoMasBuscado" type="xsd:string"/>
+            <xsd:element name="categoriaMasBuscada" type="xsd:string"/>
+            <xsd:element name="consultasRecientes">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="consulta" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element name="id" type="xsd:string"/>
+                        <xsd:element name="texto" type="xsd:string"/>
+                        <xsd:element name="categoria" type="xsd:string"/>
+                        <xsd:element name="cantidadResultados" type="xsd:int"/>
+                        <xsd:element name="creadaEn" type="xsd:string"/>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="buscarInput">
+    <wsdl:part name="parameters" element="tns:buscar"/>
+  </wsdl:message>
+  <wsdl:message name="buscarOutput">
+    <wsdl:part name="parameters" element="tns:buscarResponse"/>
+  </wsdl:message>
+  <wsdl:message name="obtenerDashboardInput">
+    <wsdl:part name="parameters" element="tns:obtenerDashboard"/>
+  </wsdl:message>
+  <wsdl:message name="obtenerDashboardOutput">
+    <wsdl:part name="parameters" element="tns:obtenerDashboardResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="BusquedaPortType">
+    <wsdl:operation name="buscar">
+      <wsdl:input message="tns:buscarInput"/>
+      <wsdl:output message="tns:buscarOutput"/>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerDashboard">
+      <wsdl:input message="tns:obtenerDashboardInput"/>
+      <wsdl:output message="tns:obtenerDashboardOutput"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BusBusquedaBinding" type="tns:BusquedaPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="buscar">
+      <soap:operation soapAction="http://motorbusqueda/buscar"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerDashboard">
+      <soap:operation soapAction="http://motorbusqueda/obtenerDashboard"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BusquedaService">
+    <wsdl:port name="BusquedaPort" binding="tns:BusBusquedaBinding">
+      <soap:address location="http://127.0.0.1:8088/bus-busqueda"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://127.0.0.1:8088/bus-busqueda</con:endpoint></con:endpoints><con:operation id="3e622410-b906-4399-a0b2-539f9e0f22af" isOneWay="false" action="http://motorbusqueda/buscar" name="buscar" bindingOperationName="buscar" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8a24ec7d-16fa-42a9-879d-5c59bc6d6616" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:8088/bus-busqueda</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mot="http://motorbusqueda/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <mot:buscar>\r
+         <!--Optional:-->\r
+         <texto>?</texto>\r
+         <!--Optional:-->\r
+         <categoria>?</categoria>\r
+         <!--Optional:-->\r
+         <fechaDesde>?</fechaDesde>\r
+         <!--Optional:-->\r
+         <usuario>?</usuario>\r
+      </mot:buscar>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://motorbusqueda/buscar"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="fed92839-70a4-4610-9d30-d2061579f4d1" isOneWay="false" action="http://motorbusqueda/obtenerDashboard" name="obtenerDashboard" bindingOperationName="obtenerDashboard" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f01bb89f-107e-42b9-b5d8-02f49d3d46ef" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:8088/bus-busqueda</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mot="http://motorbusqueda/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <mot:obtenerDashboard>\r
+         <!--Optional:-->\r
+         <rol>?</rol>\r
+      </mot:obtenerDashboard>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://motorbusqueda/obtenerDashboard"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService id="bus-mock-service" port="8088" path="/bus-busqueda" host="0.0.0.0" name="BusBusquedaMockService">
+    <con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings>
+    <con:properties/><con:mockOperation id="buscar-mock-operation" name="buscar" interface="BusBusquedaBinding" operation="buscar">
+      <con:settings/>
+      <con:defaultResponse>RespuestaBusqueda</con:defaultResponse>
+      <con:dispatchStyle>SCRIPT</con:dispatchStyle>
+      <con:dispatchPath><![CDATA[import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+import groovy.xml.XmlSlurper
+import java.time.Instant
+
+try {
+    // 1. Lectura del XML entrante
+    def requestXml = new XmlSlurper().parseText(mockRequest.requestContent)
+    def texto = requestXml.Body.buscar.texto.text()?.trim()?.toLowerCase() ?: ""
+    def categoria = requestXml.Body.buscar.categoria.text()?.trim()?.toLowerCase() ?: ""
+
+    // 2. Ruta dinámica de archivos
+    def projectPath = mockOperation.mockService.project.path
+    def baseDir = projectPath ? new File(projectPath).parentFile : new File(".")
+    def datosFile = new File(baseDir, "datos.json")
+    def consultasFile = new File(baseDir, "consultas.json")
+
+    // 3. Cargar datos de prueba respaldados
+    def baseDatos = []
+    if (datosFile.exists() && datosFile.length() > 0) {
+        try {
+            baseDatos = new JsonSlurper().parse(datosFile)
+        } catch (Exception e) {
+            baseDatos = []
+        }
+    }
+
+    // Si datos.json no existe o está vacío, usar datos por defecto
+    if (baseDatos.isEmpty()) {
+        baseDatos = [
+            [titulo: "Introducción a Software Architecture", descripcion: "Conceptos de arquitectura REST y SOAP", categoria: "Ingeniería", fechaPublicacion: "2026-01-15"],
+            [titulo: "Desarrollo con Kotlin y Room", descripcion: "Bases de datos locales en Android Studio", categoria: "Móvil", fechaPublicacion: "2026-03-10"],
+            [titulo: "Configuración de Servicios Web PHP", descripcion: "Consumo de API SOAP con SoapClient", categoria: "Ingeniería", fechaPublicacion: "2026-05-20"]
+        ]
+    }
+
+    // 4. Filtrar resultados
+    def resultadosFiltrados = baseDatos.findAll { item ->
+        def coincideTexto = texto ? (item.titulo?.toLowerCase()?.contains(texto) || item.descripcion?.toLowerCase()?.contains(texto)) : true
+        def coincideCat = categoria ? (item.categoria?.toLowerCase()?.contains(categoria)) : true
+        return coincideTexto && coincideCat
+    }
+
+    // 5. Intentar guardar en consultas.json de forma segura
+    try {
+        def consultas = (consultasFile.exists() && consultasFile.length() > 0) ? new JsonSlurper().parse(consultasFile) : []
+        def nuevaConsulta = [
+            id: "CONS-" + System.currentTimeMillis(),
+            texto: texto,
+            categoria: categoria,
+            cantidadResultados: resultadosFiltrados.size(),
+            creadaEn: Instant.now().toString(),
+            expiraEn: Instant.now().plusSeconds(86400).toString()
+        ]
+        consultas.add(nuevaConsulta)
+        consultasFile.write(JsonOutput.toJson(consultas))
+    } catch (Exception e) {
+        // Si no se puede escribir el historial, el flujo continúa sin romper la búsqueda
+    }
+
+    // 6. Generar XML de resultados
+    StringBuilder resultadosXml = new StringBuilder()
+    resultadosFiltrados.each { item ->
+        resultadosXml.append("""
+            <bus:resultado>
+                <bus:titulo>${item.titulo ?: ''}</bus:titulo>
+                <bus:descripcion>${item.descripcion ?: ''}</bus:descripcion>
+                <bus:categoria>${item.categoria ?: ''}</bus:categoria>
+                <bus:fechaPublicacion>${item.fechaPublicacion ?: ''}</bus:fechaPublicacion>
+            </bus:resultado>
+        """)
+    }
+
+    // 7. Definir respuesta SOAP
+    requestContext.responseXml = """<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bus="http://motorbusqueda/">
+       <soapenv:Header/>
+       <soapenv:Body>
+          <bus:buscarResponse>
+             <bus:consultaId>CONS-${System.currentTimeMillis()}</bus:consultaId>
+             <bus:cantidad>${resultadosFiltrados.size()}</bus:cantidad>
+             <bus:resultados>
+                ${resultadosXml.toString()}
+             </bus:resultados>
+          </bus:buscarResponse>
+       </soapenv:Body>
+    </soapenv:Envelope>"""
+
+} catch (Exception e) {
+    // Retorno de Fault ante cualquier fallo de ejecución
+    requestContext.responseXml = """<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+       <soapenv:Body>
+          <soapenv:Fault>
+             <faultcode>SOAP-ENV:Server</faultcode>
+             <faultstring>Error en Groovy buscar: ${e.message.replaceAll('<', '&lt;')}</faultstring>
+          </soapenv:Fault>
+       </soapenv:Body>
+    </soapenv:Envelope>"""
+}
+
+// Asegúrate de que este nombre sea exactamente igual al nombre de tu respuesta en la operación
+return "RespuestaBusqueda"]]></con:dispatchPath>
+      
+    <con:response name="RespuestaBusqueda" id="f0b2797a-aacc-4d51-af0b-d441e7beb804" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent>${responseXml}</con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="buscar"/></con:response><con:dispatchConfig/></con:mockOperation>
+  <con:mockOperation name="obtenerDashboard" id="3c1cf1ae-865b-4d36-b68f-bc96eb94fec9" interface="BusBusquedaBinding" operation="obtenerDashboard"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath><![CDATA[import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+import groovy.xml.XmlSlurper
+import java.time.Instant
+
+try {
+    // 1. Obtener directorio base del proyecto de forma dinámica
+    def projectFile = new File(mockOperation.mockService.project.path)
+    def baseDir = projectFile.parentFile ?: new File(".")
+    def queryFile = new File(baseDir, "consultas.json")
+
+    // 2. Parsear el XML de la petición de forma segura
+    def requestXml = new XmlSlurper().parseText(mockRequest.requestContent)
+    def rol = requestXml.Body.obtenerDashboard.rol.text()?.trim() ?: "CLIENTE"
+
+    int totalActivas = 0
+    String terminoMasBuscado = "N/A"
+    String categoriaMasBuscada = "N/A"
+    StringBuilder consultasXml = new StringBuilder()
+
+    // 3. Procesar consultas si el archivo existe
+    if (queryFile.exists() && queryFile.length() > 0) {
+        def jsonSlurper = new JsonSlurper()
+        def consultas = jsonSlurper.parse(queryFile)
+        def now = Instant.now()
+
+        // Filtrar consultas activas
+        def activas = consultas.findAll { item ->
+            try {
+                return Instant.parse(item.expiraEn).isAfter(now)
+            } catch (Exception e) {
+                return false
+            }
+        }
+
+        totalActivas = activas.size()
+
+        if (!activas.isEmpty()) {
+            // Calcular término más buscado
+            def terminos = activas.collect { it.texto?.toLowerCase() }.findAll { it }
+            if (terminos) {
+                terminoMasBuscado = terminos.groupBy { it }.max { it.value.size() }?.key ?: "N/A"
+            }
+
+            // Calcular categoría más buscada
+            def categorias = activas.collect { it.categoria?.toLowerCase() }.findAll { it }
+            if (categorias) {
+                categoriaMasBuscada = categorias.groupBy { it }.max { it.value.size() }?.key ?: "N/A"
+            }
+
+            // Generar XML de consultas recientes (últimas 5)
+            activas.take(5).each { item ->
+                consultasXml.append("""
+                    <bus:consulta>
+                        <bus:id>${item.id}</bus:id>
+                        <bus:texto>${item.texto ?: ''}</bus:texto>
+                        <bus:categoria>${item.categoria ?: ''}</bus:categoria>
+                        <bus:cantidadResultados>${item.cantidadResultados ?: 0}</bus:cantidadResultados>
+                        <bus:creadaEn>${item.creadaEn ?: ''}</bus:creadaEn>
+                    </bus:consulta>
+                """)
+            }
+        }
+    }
+
+    // 4. Construir respuesta SOAP exitosa
+    requestContext.responseXml = """<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bus="http://motorbusqueda/">
+       <soapenv:Header/>
+       <soapenv:Body>
+          <bus:obtenerDashboardResponse>
+             <bus:totalConsultasActivas>${totalActivas}</bus:totalConsultasActivas>
+             <bus:terminoMasBuscado>${terminoMasBuscado}</bus:terminoMasBuscado>
+             <bus:categoriaMasBuscada>${categoriaMasBuscada}</bus:categoriaMasBuscada>
+             <bus:consultasRecientes>
+                ${consultasXml.toString()}
+             </bus:consultasRecientes>
+          </bus:obtenerDashboardResponse>
+       </soapenv:Body>
+    </soapenv:Envelope>"""
+
+} catch (Exception e) {
+    // Si hay algún error, devuelve un SOAP Fault explicativo en lugar de dar Error 500
+    requestContext.responseXml = """<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+       <soapenv:Body>
+          <soapenv:Fault>
+             <faultcode>SOAP-ENV:Server</faultcode>
+             <faultstring>Error interno en Groovy: ${e.message.replaceAll('<', '&lt;')}</faultstring>
+          </soapenv:Fault>
+       </soapenv:Body>
+    </soapenv:Envelope>"""
+}
+
+return "Response 1"]]></con:dispatchPath><con:response name="Response 1" id="eac7f216-a829-44ef-8b9c-243db6aa846a" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent>${responseXml}</con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://motorbusqueda/obtenerDashboard"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService>
+  <con:properties/>
+  <con:wssContainer/>
+  <con:oAuth2ProfileContainer/>
+  <con:oAuth1ProfileContainer/>
+  <con:sensitiveInformation/>
+</con:soapui-project>

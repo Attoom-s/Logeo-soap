@@ -1,0 +1,11 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:bus="http://motorbusqueda/">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <bus:buscar>
+      <bus:texto>software</bus:texto>
+      <bus:categoria>Ingeniería</bus:categoria>
+      <bus:fechaDesde>2026-01-01</bus:fechaDesde>
+    </bus:buscar>
+  </soapenv:Body>
+</soapenv:Envelope>

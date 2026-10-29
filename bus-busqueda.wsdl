@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns="http://motorbusqueda/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  name="BusquedaService"
+                  targetNamespace="http://motorbusqueda/">
+
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://motorbusqueda/">
+      <xsd:element name="buscar">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="texto" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="categoria" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="fechaDesde" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="usuario" type="xsd:string" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="buscarResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="consultaId" type="xsd:string"/>
+            <xsd:element name="cantidad" type="xsd:int"/>
+            <xsd:element name="resultados">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="resultado" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element name="titulo" type="xsd:string"/>
+                        <xsd:element name="descripcion" type="xsd:string"/>
+                        <xsd:element name="categoria" type="xsd:string"/>
+                        <xsd:element name="fechaPublicacion" type="xsd:string"/>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="obtenerDashboard">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="rol" type="xsd:string" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="obtenerDashboardResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="totalConsultasActivas" type="xsd:int"/>
+            <xsd:element name="terminoMasBuscado" type="xsd:string"/>
+            <xsd:element name="categoriaMasBuscada" type="xsd:string"/>
+            <xsd:element name="consultasRecientes">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="consulta" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element name="id" type="xsd:string"/>
+                        <xsd:element name="texto" type="xsd:string"/>
+                        <xsd:element name="categoria" type="xsd:string"/>
+                        <xsd:element name="cantidadResultados" type="xsd:int"/>
+                        <xsd:element name="creadaEn" type="xsd:string"/>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+
+  <wsdl:message name="buscarInput"><wsdl:part name="parameters" element="tns:buscar"/></wsdl:message>
+  <wsdl:message name="buscarOutput"><wsdl:part name="parameters" element="tns:buscarResponse"/></wsdl:message>
+  <wsdl:message name="obtenerDashboardInput"><wsdl:part name="parameters" element="tns:obtenerDashboard"/></wsdl:message>
+  <wsdl:message name="obtenerDashboardOutput"><wsdl:part name="parameters" element="tns:obtenerDashboardResponse"/></wsdl:message>
+
+  <wsdl:portType name="BusquedaPortType">
+    <wsdl:operation name="buscar">
+      <wsdl:input message="tns:buscarInput"/>
+      <wsdl:output message="tns:buscarOutput"/>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerDashboard">
+      <wsdl:input message="tns:obtenerDashboardInput"/>
+      <wsdl:output message="tns:obtenerDashboardOutput"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="BusBusquedaBinding" type="tns:BusquedaPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="buscar">
+      <soap:operation soapAction="http://motorbusqueda/buscar"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerDashboard">
+      <soap:operation soapAction="http://motorbusqueda/obtenerDashboard"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="BusquedaService">
+    <wsdl:port name="BusquedaPort" binding="tns:BusBusquedaBinding">
+      <soap:address location="http://127.0.0.1:8088/bus-busqueda"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

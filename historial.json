@@ -1,0 +1,92 @@
+[
+    {
+        "id": "CONS-1792786249403",
+        "usuario": "Cliente Demo",
+        "rol": "CLIENTE",
+        "texto": "",
+        "categoria": "software",
+        "fechaDesde": "",
+        "resultadosEncontrados": 0,
+        "fechaHora": "2026-10-23 22:10:49"
+    },
+    {
+        "id": "CONS-1792786235845",
+        "usuario": "Cliente Demo",
+        "rol": "CLIENTE",
+        "texto": "",
+        "categoria": "softarew",
+        "fechaDesde": "",
+        "resultadosEncontrados": 0,
+        "fechaHora": "2026-10-23 22:10:35"
+    },
+    {
+        "id": "CONS-1792786221870",
+        "usuario": "Cliente Demo",
+        "rol": "CLIENTE",
+        "texto": ".",
+        "categoria": "web",
+        "fechaDesde": "",
+        "resultadosEncontrados": 2,
+        "fechaHora": "2026-10-23 22:10:21"
+    },
+    {
+        "id": "CONS-1792786194800",
+        "usuario": "Cliente Demo",
+        "rol": "CLIENTE",
+        "texto": ".",
+        "categoria": "web",
+        "fechaDesde": "",
+        "resultadosEncontrados": 2,
+        "fechaHora": "2026-10-23 22:09:54"
+    },
+    {
+        "id": "CONS-1792786167533",
+        "usuario": "Cliente Demo",
+        "rol": "CLIENTE",
+        "texto": ".",
+        "categoria": "",
+        "fechaDesde": "",
+        "resultadosEncontrados": 6,
+        "fechaHora": "2026-10-23 22:09:27"
+    },
+    {
+        "id": "CONS-1792785988931",
+        "usuario": "Administrador",
+        "rol": "ADMIN",
+        "texto": ".",
+        "categoria": "",
+        "fechaDesde": "2026-04-07",
+        "resultadosEncontrados": 6,
+        "fechaHora": "2026-10-23 22:06:28"
+    },
+    {
+        "id": "CONS-1792785960710",
+        "usuario": "Administrador",
+        "rol": "ADMIN",
+        "texto": "Scripts",
+        "categoria": "",
+        "fechaDesde": "",
+        "resultadosEncontrados": 1,
+        "fechaHora": "2026-10-23 22:06:00"
+    },
+    {
+        "id": "CONS-1792785925742",
+        "usuario": "Administrador",
+        "rol": "ADMIN",
+        "texto": "REST",
+        "categoria": "",
+        "fechaDesde": "",
+        "resultadosEncontrados": 0,
+        "fechaHora": "2026-10-23 22:05:25"
+    },
+    {
+        "id": "CONS-1791139374465",
+        "usuario": "Cliente Demo",
+        "rol": "CLIENTE",
+        "texto": ",",
+        "categoria": "",
+        "fechaDesde": "2026-04-18",
+        "resultadosEncontrados": 0,
+        "fechaHora": "2026-10-04 20:42:54"
+    }
+]
